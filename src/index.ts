@@ -1,3 +1,8 @@
-let user: [number, string] = [1, 'Hans'];
-user.push(1);
-//Tuples are useful when you only have key value pairs and always endeavour to keep it at two values.
+// const small = 1;
+// const medium = 2;
+// const large = 3;
+
+//PascalCase 
+enum Size  { Small = 1, Medium, Large };
+let mySize: Size = Size.Medium;
+console.log(mySize);
