@@ -1,8 +1,12 @@
-function render(document: unknown) {
-    if (document instanceof WordDocument) {
-        document.toUpperCase();
-    }
-    document.move();
-    document.fly();
-    document.whateverWeWant();
+function reject(message: string): never {
+    throw new Error(message);
 }
+
+function processEvents(): never {
+    while (true) {
+
+    }
+}
+
+reject('...');
+console.log('Hello World');
