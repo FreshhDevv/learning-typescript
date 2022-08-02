@@ -16,3 +16,7 @@ class Account {
 
     }
 }
+
+let account = new Account(1, 'Hans', 0);
+account.deposit(100);
+console.log(account);
