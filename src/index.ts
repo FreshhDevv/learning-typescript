@@ -2,7 +2,7 @@ class Account {
     nickname?: string;
 
     constructor(
-        public readonly id: number, 
+        public readonly id: number,
         public owner: string,
         private _balance: number) {
     }
@@ -14,15 +14,17 @@ class Account {
 
     }
 
-private calculateTax() {
+    private calculateTax() {
 
-}
+    }
 
-    getBalance(): number {
+    get balance(): number {
         return account._balance;
     }
+
+    
 }
 
 let account = new Account(1, 'Hans', 0);
-console.log(account.getBalance());
+console.log(account.balance);
 
