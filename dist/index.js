@@ -1,12 +1,22 @@
 "use strict";
-class Ride {
-    start() { Ride.activeRides++; }
-    stop() { Ride.activeRides--; }
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+    display() {
+        console.log(this.name);
+    }
 }
-Ride.activeRides = 0;
-let ride1 = new Ride();
-ride1.start();
-let ride2 = new Ride();
-ride2.start();
-console.log(Ride.activeRides);
+class Employee extends Person {
+    constructor(name, code) {
+        super(name);
+        this.empCode = code;
+    }
+    find(name) {
+        return new Employee(name, 1);
+    }
+}
+let emp = new Employee("Ella", 100);
+emp.display();
+let emp2 = emp.find('Steve');
 //# sourceMappingURL=index.js.map
