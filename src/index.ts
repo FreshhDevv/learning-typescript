@@ -1,18 +1,31 @@
-class Ride {
-    private static _activeRides: number = 0;
+abstract class Person {
+    name: string;
 
-    start() {Ride._activeRides++;}
-    stop() {Ride._activeRides--;}
+    constructor(name: string) {
+        this.name = name;
+    }
 
-    static get activeRides() {
-        return Ride._activeRides;
+    display(): void {
+        console.log(this.name);
+    }
+
+    abstract find(string: any): Person;
+}
+
+class Employee extends Person {
+    empCode: number;
+
+    constructor(name: string, code: number) {
+        super(name);
+        this.empCode = code;
+    }
+
+    find(name: string): Person {
+        return new Employee(name, 1);
     }
 }
 
-let ride1 = new Ride();
-ride1.start();
+let emp: Person = new Employee("Ella", 100);
+emp.display();
 
-let ride2 = new Ride();
-ride2.start();
-
-console.log(Ride.activeRides);
+let emp2: Person = emp.find('Steve');
