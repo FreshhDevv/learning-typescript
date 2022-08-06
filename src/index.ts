@@ -1,9 +1,20 @@
-class ArrayUtils {
-wrapInArray<T>(value: T) {
-return [value];
+
+interface Result<T> {
+    data: T | null, 
+    error: string | null,
 }
 
+function fetch<T>(url: string): Result<T> {
+    return {data: null, error: null};
 }
 
-let utils = new ArrayUtils();
-let numbers = utils.wrapInArray('1');
+interface User {
+    username: string;
+}
+
+interface Product {
+    title: string;
+}
+
+let result = fetch<Product>('url');
+result.data.
