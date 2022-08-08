@@ -3,18 +3,21 @@ interface Product {
     price: number
 }
 
-class Store<T> {
-    protected _objects: T[] = [];
+type ReadOnly<T> = {
+    //Index signature
+    //keyof
+    readonly [K in keyof T]: T[K];
+} 
 
-    add(obj: T): void {
-        this._objects.push(obj);
-    }
-    //If T is Product
-    //keyof T => 'name' | 'price'
-    find(property: keyof T, value: unknown): T | undefined {
-        return this._objects.find(obj => obj[property] === value);
-    }
+type Optional<T> = {
+    [K in keyof T]?: T[K]
 }
 
-let store = new Store<Product>();
-store.add({name: 'a', price: 1});
+type Nullable<T> = {
+    [K in keyof T]: T[K] | null
+}
+
+let product: ReadOnly<Product> = {
+    name: 'a',
+    price: 1,
+}
