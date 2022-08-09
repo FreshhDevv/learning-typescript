@@ -1,31 +1,29 @@
-abstract class Person {
-    name: string;
+class Person {
+    constructor (public firstName: string, public lastName: string){}
 
-    constructor(name: string) {
-        this.name = name;
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`;
     }
-
-    display(): void {
-        console.log(this.name);
-    }
-
-    abstract find(string: any): Person;
 }
 
 class Employee extends Person {
-    empCode: number;
-
-    constructor(name: string, code: number) {
-        super(name);
-        this.empCode = code;
-    }
-
-    find(name: string): Person {
-        return new Employee(name, 1);
+    constructor (
+        firstName: string,
+        lastName: string,
+        public salary: number,
+    ) {
+        super(firstName, lastName);
     }
 }
 
-let emp: Person = new Employee("Ella", 100);
-emp.display();
+interface Address {
+    street: string;
+    city: string;
+    zipCode: number;
+}
 
-let emp2: Person = emp.find('Steve');
+interface Employee {
+    name: string;
+    salary: number;
+    address: Address;
+}
