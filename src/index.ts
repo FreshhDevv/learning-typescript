@@ -1,27 +1,18 @@
-type ComponentOptions = {
-    selector: string;
-}
-
-//Decorator factory
-function Component(options:ComponentOptions) {
-    
-    return  (constructor: Function) => {
-        console.log('Component decorator called');
-        constructor.prototype.options = options;
-        constructor.prototype.uniqueId = Date.now();
-        constructor.prototype.insertInDom = () => {
-            console.log('Inserting the component in DOM');
-        }
+function Capitalize(_target: any, _methodName: string, descriptor:  PropertyDescriptor) {
+    const original = descriptor.get;
+    descriptor.get = function() {
+        const result = original?.call(this);
+        return (typeof result === 'string')? result.toUpperCase() : result;
     }
 }
 
-function Pipe(constructor: Function) {
-    console.log('Pipe decorator called');
-    constructor.prototype.pipe = true;
+class Person {
+    constructor(public firstName: string, public lastName: string) {}
+    @Capitalize
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
 }
 
-@Component({selector: '#my-profile'})
-@Pipe
-class ProfileComponent{
-
-}
+let person = new Person('hans', 'weno');
+console.log(person.fullName);
